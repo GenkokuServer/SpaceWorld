@@ -1,0 +1,16 @@
+name: SpaceWorld
+version: ${project.version}
+main: genkoku.city.spaceworld.SpaceWorld
+authors: [tomo1560]
+depend: [ItemNBTAPI]
+
+commands:
+  spaceworld:
+    aliases: [sw, sworld]
+    description: Main plugin command
+    usage: /<command> [reload]
+
+permissions:
+  spaceworld.reload:
+    description: reload plugin
+    default: false
