@@ -1,22 +1,40 @@
 package genkoku.city.spaceworld.Listener;
 
+import com.bergerkiller.bukkit.common.events.EntityAddEvent;
 import de.tr7zw.itemnbtapi.NBTEntity;
 import genkoku.city.spaceworld.SpaceWorld;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
 public class EntityListener implements Listener {
+
+    private static final Set<EntityType> ENTITY_TYPE_SET = new HashSet<>();
+
     private SpaceWorld plugin;
     private Logger logger;
+
+    static {
+        ENTITY_TYPE_SET.add(EntityType.MINECART);
+        ENTITY_TYPE_SET.add(EntityType.MINECART_CHEST);
+        ENTITY_TYPE_SET.add(EntityType.MINECART_FURNACE);
+        ENTITY_TYPE_SET.add(EntityType.MINECART_HOPPER);
+        ENTITY_TYPE_SET.add(EntityType.MINECART_TNT);
+        ENTITY_TYPE_SET.add(EntityType.MINECART_MOB_SPAWNER);
+        ENTITY_TYPE_SET.add(EntityType.PRIMED_TNT);
+        ENTITY_TYPE_SET.add(EntityType.BOAT);
+    }
 
     public EntityListener(SpaceWorld plugin) {
         this.plugin = plugin;
@@ -25,9 +43,9 @@ public class EntityListener implements Listener {
     }
 
     @EventHandler
-    public void onEntitySpawn(EntitySpawnEvent event) {
+    public void onCreatureSpawn(CreatureSpawnEvent event) {
         if (plugin.isDebug()) {
-            logger.info("onEntitySpawnEvent");
+            logger.info("CreatureSpawnEvent");
         }
         Entity entity = event.getEntity();
         Location location = event.getLocation();
@@ -37,7 +55,7 @@ public class EntityListener implements Listener {
     @EventHandler
     public void onItemSpawn(ItemSpawnEvent event) {
         if (plugin.isDebug()) {
-            logger.info("onItemSpawnEvent");
+            logger.info("ItemSpawnEvent");
         }
         Entity entity = event.getEntity();
         Location location = event.getLocation();
@@ -47,7 +65,7 @@ public class EntityListener implements Listener {
     @EventHandler
     public void onPlayerItemDrop(PlayerDropItemEvent event) {
         if (plugin.isDebug()) {
-            logger.info("onPlayerItemDrop");
+            logger.info("PlayerDropItemEvent");
         }
         Entity entity = event.getItemDrop();
         Location location = event.getPlayer().getLocation();
@@ -62,6 +80,19 @@ public class EntityListener implements Listener {
         Entity entity = event.getEntity();
         Location location = entity.getLocation();
         addNoGravityEntity(entity, location);
+    }
+
+    @EventHandler
+    public void onEntityAdd(EntityAddEvent event){
+        if (plugin.isDebug()) {
+            logger.info("EntityAddEvent");
+        }
+        EntityType entityType = event.getEntityType();
+        if (ENTITY_TYPE_SET.contains(entityType)){
+            Entity entity = event.getEntity();
+            Location location = entity.getLocation();
+            addNoGravityEntity(entity, location);
+        }
     }
 
     private void addNoGravityEntity(Entity entity, Location location) {

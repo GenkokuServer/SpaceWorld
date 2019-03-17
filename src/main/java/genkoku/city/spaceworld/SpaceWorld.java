@@ -17,6 +17,7 @@ public final class SpaceWorld extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+
         loadConfig();
         getCommand(getName().toLowerCase()).setExecutor(new SpaceWorldCommand(this));
         getServer().getPluginManager().registerEvents(new EntityListener(this), this);
@@ -28,7 +29,7 @@ public final class SpaceWorld extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-    public void loadConfig() {
+    void loadConfig() {
         saveDefaultConfig();
         FileConfiguration config = getConfig();
         worldSet = new HashSet<>(config.getStringList("world"));

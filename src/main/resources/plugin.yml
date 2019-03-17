@@ -2,7 +2,7 @@ name: SpaceWorld
 version: ${project.version}
 main: genkoku.city.spaceworld.SpaceWorld
 authors: [tomo1560]
-depend: [ItemNBTAPI]
+depend: [ItemNBTAPI, BKCommonLib]
 
 commands:
   spaceworld:
