@@ -1,8 +1,9 @@
-package genkoku.city.spaceworld.Listener;
+package city.genkoku.spaceworld.Listener;
 
+
+import city.genkoku.spaceworld.SpaceWorld;
 import com.bergerkiller.bukkit.common.events.EntityAddEvent;
-import de.tr7zw.itemnbtapi.NBTEntity;
-import genkoku.city.spaceworld.SpaceWorld;
+import de.tr7zw.changeme.nbtapi.NBTEntity;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;

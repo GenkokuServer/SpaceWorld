@@ -1,7 +1,7 @@
-package genkoku.city.spaceworld;
+package city.genkoku.spaceworld;
 
-import genkoku.city.spaceworld.Listener.EntityListener;
-import genkoku.city.spaceworld.Listener.PlayerListener;
+import city.genkoku.spaceworld.Listener.EntityListener;
+import city.genkoku.spaceworld.Listener.PlayerListener;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 

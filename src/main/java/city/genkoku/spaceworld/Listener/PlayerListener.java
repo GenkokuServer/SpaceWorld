@@ -1,6 +1,6 @@
-package genkoku.city.spaceworld.Listener;
+package city.genkoku.spaceworld.Listener;
 
-import genkoku.city.spaceworld.SpaceWorld;
+import city.genkoku.spaceworld.SpaceWorld;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
